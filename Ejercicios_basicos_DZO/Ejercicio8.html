@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicios Basicos</title>
+	<script type="text/javascript">
+		var numero=prompt("Escribe un numero:");
+		var divisores=[2,3,5,7];
+		var i=0;
+
+		numero=parseInt(numero);
+		i=parseInt(i);
+
+		
+		if(numero % 2 != 0 && numero % 3 != 0 && numero % 5 != 0 && numero % 7 != 0){
+			document.write("El numero no es divisible por 2, 3, 5 ni 7");
+		}else{
+			document.write("Los divisores son: ");
+			for(i=0;i<divisores.length;i++){
+					if(numero % divisores[i] == 0){
+						document.write(divisores[i]+", ");
+					}
+				}
+		}
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>
