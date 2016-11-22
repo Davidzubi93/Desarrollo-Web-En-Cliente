@@ -7,13 +7,13 @@
         Al pulsar el boton pediremos al servidor web el contenido del fichero que le indiquemos en el cuadro de texto. 
         Este texto deberá aparecer debajo de los elementos en un cuadro. En el caso de que el fichero no exista en el servidor tendra que avisarnos de ello.*/
         var peticion = null;
-        peticion = new XMLHTTPRequest();
-        function Hartu() {
+        peticion = new XMLHttpRequest();
+        function Hartu(urlDoc) {
+        	urlDoc = document.getElementById("fichero").value;
         	if(peticion) {
 	        peticion.onreadystatechange = function () {
 	        	if (peticion.readyState == 4) {
 			        if(peticion.status==200) {
-			        document.getElementById("fichero").value
 				    var datosDoc = peticion.responseText;
 				    document.getElementById('emaitza').innerHTML = datosDoc;
 		        	} else {
@@ -21,7 +21,7 @@
 			    }
 	    	}
 	    }
-	peticion.open('GET', url, true); 
+	peticion.open('GET', urlDoc, true); 
 	peticion.send();
 	}
 }
