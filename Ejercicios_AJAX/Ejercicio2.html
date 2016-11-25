@@ -2,41 +2,9 @@
 <html>
     <head>
         <title>Ajax 1 Ariketa</title>
-        <script type="text/javascript">
-            /*2.	Crear una página a la que le pediremos la lista de películas almacenadas en un fichero XML que estara en el servidor. 
-            A la hora de mostrarlos, se creara una tabla y apareceran en dos columnas separadas.*/
-            function cargarXMLDoc(){
-                var peticion = null;
-                peticion = new XMLHttpRequest();
-            	        peticion.onreadystatechange = function () {
-            	        	if (peticion.readyState == 4 && peticion.status == 200) {
-            			        mostrarXML(this);
-                	    	}
-                	    }//function ()
-            	        peticion.open('GET', "prueba.xml", true); 
-            	        peticion.send();
-            }
-            
-            function mostrarXML(xml){
-                var xmlDoc, contenido, elemento, table;
-                xmlDoc = xml.responseText;
-                elemento= xmlDoc.getElementsByTagName("Pelicula");
-                for (var i=0;elemento.length;i++){
-                    table +="<tr><td>"+ contenido += elemento[i].getElementsByTagName("Titulo")[0].childNodes[0].nodeValue+ "</td><td>"+
-                    elemento[i].getElementsByTagName("Duracion")[0].childNodes[0].nodeValue+ "</td><td>"+
-                    elemento[i].getElementsByTagName("Genero")[0].childNodes[0].nodeValue+ "</td><td>"+
-                    elemento[i].getElementsByTagName("Titulo")[1].childNodes[1].nodeValue+ "</td><td>"+
-                    elemento[i].getElementsByTagName("Duracion")[1].childNodes[1].nodeValue+ "</td><td>"+
-                    elemento[i].getElementsByTagName("Genero")[1].childNodes[1].nodeValue+ "</td></tr>";
-                    
-                    
-                }
-                document.getElementByID("tabla").innerHTMl = contenido;
-            }
-        </script>
     </head>
     <body>
-        <button type="button" onclick=" cargarXMLDoc()" id="mostrar">Mostrar</button>
+        <button type="button" onclick=" cargarXMLDoc()">Mostrar</button>
         <table id="tabla" border="4">
             <tr>
                <th>Titulo</th> 
@@ -44,5 +12,32 @@
                <th>Genero</th>
             </tr>
         </table>
+           <script type="text/javascript">
+            /*2.	Crear una página a la que le pediremos la lista de películas almacenadas en un fichero XML que estara en el servidor. 
+            A la hora de mostrarlos, se creara una tabla y apareceran en dos columnas separadas.*/
+            function cargarXMLDoc(){
+                var peticion = null;
+                peticion = new XMLHttpRequest();
+            	        peticion.onreadystatechange = function () {
+            	        	if (peticion.readyState == 4 && peticion.status == 200) {
+            			        mostrarXML(peticion);
+                	    	}
+                	    }//function ()
+            	        peticion.open("GET", "prueba.xml", true); 
+            	        peticion.send();
+            }
+            
+            function mostrarXML(xml){
+                var xmlDoc,elemento, tabla;
+                xmlDoc = xml.responseXML;
+                elemento= xmlDoc.getElementsByTagName("Pelicula")
+                for (var i=0;elemento.length;i++){
+                    tabla +="<tr><td>"+ elemento[i].getElementsByTagName("Titulo")[0].childNodes[0].nodeValue+ "</td><td>"+
+                    elemento[i].getElementsByTagName("Duracion")[0].childNodes[0].nodeValue+ "</td><td>"+
+                    elemento[i].getElementsByTagName("Genero")[0].childNodes[0].nodeValue+ "</td></tr>"
+                }
+                document.getElementById("tabla").innerHTMl = tabla;
+            }
+        </script>
     </body>
 </html>
