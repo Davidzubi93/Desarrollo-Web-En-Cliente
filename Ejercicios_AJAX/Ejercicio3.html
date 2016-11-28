@@ -1,0 +1,59 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <title>Ajax 3 Ariketa</title>
+    </head>
+    <body>
+        <table id="tabla" border="4">
+            <tr>
+                <td><img src="./img_peliculas/reservoir_dogs.jpg" id="reservoirdogs" onclick=" cargarXMLDoc()"/></td>
+                <td><img src="./img_peliculas/trainspotting.jpg" id="trainspotting"  onclick=" cargarXMLDoc()"/></td>
+                <td><img src="./img_peliculas/batman_begins.jpg" id="batmanbegins"  onclick=" cargarXMLDoc()"/></td>
+                <td><img src="./img_peliculas/inception.jpg" id="inception"  onclick=" cargarXMLDoc()"/></td>
+                <td><img src="./img_peliculas/snach.jpg" id="snach"  onclick=" cargarXMLDoc()"/></td>
+                <td><img src="./img_peliculas/gladiator.jpg" id="gladiator"  onclick=" cargarXMLDoc()"/></td>
+                
+            </tr>
+        </table>
+        <div id="sinopsis">sinopsis</div>
+        <script>
+            /*3.	Crear una página en la que apareceran los carteles de las peliculas del ejercicio anterior. 
+            Cuando pulsemos sobre cada cartel aparecera la sinopsis de esa pelicula en un partado que estara debajo de las imagenes. Cada sinopsis se guardaran en un fichero diferente.*/
+            var imagenes = document.getElementsByTagName("img");
+            function cargarXMLDoc(){
+                var peticion = new XMLHttpRequest();
+            	peticion.onreadystatechange = function () {
+            	    if (this.readyState == 4 && this.status == 200) {
+            		    mostrarSinopsis(this);
+                    }
+                };//function ()
+                if (document.getElementById("reservoirdogs")){
+                    peticion.open("GET", "sinopsisreserv.txt", true); 
+                    peticion.send();
+                } else if(document.getElementById("trainspotting")){
+                    peticion.open("GET", "sinopsistrains.txt", true); 
+                    peticion.send();
+                } else if(document.getElementById("batmanbegins")){
+                    peticion.open("GET", "sinopsisbatman.txt", true); 
+                    peticion.send();
+                } else if(document.getElementById("inception")){
+                    peticion.open("GET", "sinopsisincep.txt", true); 
+                    peticion.send();
+                } else if(document.getElementById("snach")){
+                    peticion.open("GET", "sinopsissnach.txt", true); 
+                    peticion.send();
+                } else if(imagenes.id=="gladiator"){
+                    peticion.open("GET", "sinopsisgladi.txt", true); 
+                    peticion.send();
+                }
+            	
+            }
+            
+            function mostrarSinopsis(txt){
+                var txtDoc = txt.responseText;
+                document.getElementById("sinopsis").innerHTML = +txtDoc;
+            }
+        
+    </script>
+    </body>
+</html>
