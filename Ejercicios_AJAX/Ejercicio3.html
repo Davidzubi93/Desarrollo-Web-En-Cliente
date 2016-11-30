@@ -11,7 +11,7 @@
                 <td><img src="./img_peliculas/batman_begins.jpg" id="batmanbegins"  onclick=" cargarXMLDoc()"/></td>
                 <td><img src="./img_peliculas/inception.jpg" id="inception"  onclick=" cargarXMLDoc()"/></td>
                 <td><img src="./img_peliculas/snach.jpg" id="snach"  onclick=" cargarXMLDoc()"/></td>
-                <td><img src="./img_peliculas/gladiator.jpg" id="gladiator"  onclick=" cargarXMLDoc()"/></td>
+                <td><img src="./img_peliculas/gladiator.jpg" id="gladiator"  onclick=" cargarDoc()"/></td>
                 
             </tr>
         </table>
@@ -20,7 +20,7 @@
             /*3.	Crear una página en la que apareceran los carteles de las peliculas del ejercicio anterior. 
             Cuando pulsemos sobre cada cartel aparecera la sinopsis de esa pelicula en un partado que estara debajo de las imagenes. Cada sinopsis se guardaran en un fichero diferente.*/
             var imagenes = document.getElementsByTagName("img");
-            function cargarXMLDoc(){
+            function cargarDoc(){
                 var peticion = new XMLHttpRequest();
             	peticion.onreadystatechange = function () {
             	    if (this.readyState == 4 && this.status == 200) {
