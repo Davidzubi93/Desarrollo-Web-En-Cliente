@@ -1,0 +1,39 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <title>Ajax 2 Ariketa</title>
+    </head>
+    <body>
+        <button type="button" onclick=" cargarDoc()">Mostrar</button>
+        <br><br>
+        <table id="tabla" border="1"></table>
+            <script>
+            /*2.	Crear una página a la que le pediremos la lista de películas almacenadas en un fichero XML que estara en el servidor. 
+            A la hora de mostrarlos, se creara una tabla y apareceran en dos columnas separadas.*/
+            function cargarDoc() {
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  mostrarDatos(this);
+                }
+              };
+              xhttp.open("GET", "prueba.xml", true);
+              xhttp.send();
+            }
+            function mostrarDatos(xml) {
+              var i;
+              var xmlDoc = xml.responseXML;
+              var tabla="<tr><th>Titulo</th><th>Director</th></tr>";
+              var x = xmlDoc.getElementsByTagName("Pelicula");
+              for (i = 0; i <x.length; i++) { 
+                tabla += "<tr><td>" +
+                x[i].getElementsByTagName("Titulo")[0].childNodes[0].nodeValue +
+                "</td><td>" +
+                    x[i].getElementsByTagName("Director")[0].childNodes[0].nodeValue +
+                "</td></tr>";
+              }
+              document.getElementById("tabla").innerHTML = tabla;
+            }
+        </script>
+    </body>
+</html>
