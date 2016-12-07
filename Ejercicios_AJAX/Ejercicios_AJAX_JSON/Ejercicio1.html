@@ -27,9 +27,9 @@
               var tabla="<tr><th>Titulo</th><th>Director</th></tr>";
               for (i = 0; i <datos.length; i++) { 
                 tabla += "<tr><td>" +
-                datos[i].Titulo+
+                datos.Pelicula[i].Titulo +
                 "</td><td>" +
-                    datos[i].Director +
+                    datos.Pelicula[i].Director +
                 "</td></tr>";
               }
               document.getElementById("tabla").innerHTML = tabla;
