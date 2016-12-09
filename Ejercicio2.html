@@ -1,0 +1,31 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <title>Ajax_JSON 2 Ariketa</title>
+    </head>
+    <body>
+        Nombre:<input type="text" id="nombre_text" onkeypress="cargarDoc(this.value)"/><br>
+        Sugerencias:<span id="sugerencias"></span>
+        
+        <script type="text/javascript">
+            /*2.	Tendremos un fichero con datos en formato JSON, en el que habra una serie de nombres. 
+            El ejercicio consiste en introducir un nombre cualquiera en un cuadro de texto y segun estemos escribiendo mostrara sugerencias que coincidan con los nombres del servidor. 
+            Si no hay coincidencias mostrara un mensaje personalizado.*/
+            function cargarDoc(texto){
+                var xhttp = new XMLHttpRequest();
+                var docJSON = "ejercicio2.json";
+                if (texto.length == 0){
+                    document.getElementById("sugerencias").innerHTML = "";
+                    return;
+                }
+                xhttp.onreadystatechange = function(){
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("sugerencias").innerHTML = this.responseText;
+                    }
+                }
+                xhttp.open("GET", docJSON, true);
+                xhttp.send();
+            }
+        </script>
+    </body>
+</html>
